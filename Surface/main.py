@@ -1,11 +1,5 @@
-import pygame, sys
-
-# General setup
-pygame.init()
-pygame.font.init()
-
-# track how fast the game runs
-clock = pygame.time.Clock()
+import pygame
+import sys
 
 # Window colors
 SCREEN_R = 212
@@ -13,21 +7,24 @@ SCREEN_G = 224
 SCREEN_B = 236
 
 # refresh frequency
-FREQUENCY = 120
+FREQUENCY = 30
 
 # Window
-WIDTH, HEIGHT = 1250, 800
+WIDTH, HEIGHT = 1250, 900
 TITLE = "Assignment 10 - Text Adventure"
+# General setup
 pygame.init()
+pygame.font.init()
 map = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption(TITLE)
 clock = pygame.time.Clock()
 
-
-
-# Area colors
+# Area colors and initialization information
 WHITE = [255,255,255]
 GREEN = [0,180,0]
+GRAY = [120,120,120]
+RED = [255,0,0]
+PINK = [120,0,0]
 AREA_BASE_COLOR_R = 25
 AREA_BASE_COLOR_G = 25
 AREA_BASE_COLOR_B = 25
@@ -37,7 +34,15 @@ AREA_COLOR_INCREMENTS = 35
 AREA_START_X = 18
 AREA_START_Y = 174
 
-# areas  that are loaded to the screen. It will be populated during startup.
+# Player colors
+PLAYER_COLOR_R = 250
+PLAYER_COLOR_G = 120
+PLAYER_COLOR_B = 60
+# Player size
+PLAYER_WIDTH = 16
+PLAYER_HEIGHT = 12
+
+# dictionary to keep track of the areas already built. It will be populated during startup.
 loaded_areas = {}
 
 AREA_DESCRIPTIONS = ["FR: the family room is a private room for the whole family. It has a fireplace.",
@@ -86,22 +91,24 @@ AREA_SIZES =    [[229, 112],    [180,174],              [202,113],      [217,246
                  [114,93],      [254,122],              [211,66],       [233,116],      [143,246],          [114,96],       [295,71],
                  [282,112],     [158,94],               [119,82],       [134,46],       [352,202],          [232,376]]
 
+PRIZES_LIST =    [[],         [],              [["Sandwiches"],[3]],    [],             [["Games"],[3]],  [["Books"],[3]],        [],
+                  [],         [],              [],                      [],             [],               [["Tennis Racket", "Pingpong Racket", "Golf Club", "Golf Ball"],[4,4,12,100]], [],
+                  [],         [],              [],                      [],             [],               []]
+
+
 # exit size
 EXIT_SIZE = 20
 
-
 # check if a tuple is inside the rectangle
-# sx,sy: tuple; rx,ry,rw,rh: rectangle parameters
+# sx,sy: tuple;
+# rx,ry,rw,rh: rectangle parameters
 def isInRect(sx,sy,rx,ry,rw,rh):
    if sx >= rx and sx <= rx + rw and sy >= ry and sy <= ry+rh:
        return True
    return False
-
 def isInAnyRect(sx,sy):
-   print (sx," and ", sy)
-   for key in loaded_areas.keys:
-       rect = exit_rect_list[key]
-       print ("rect: ", rect)
+   for key in loaded_areas.keys():
+       rect = loaded_areas[key]
        rx = rect[0]
        ry = rect[1]
        rw = rect[2]
@@ -109,7 +116,13 @@ def isInAnyRect(sx,sy):
        if isInRect(sx,sy,rx,ry,rw,rh):
            return key
    return None
-
+def updateText(size, text, color, x, y):
+    # blit the names
+    myfont = pygame.font.SysFont("arial", size, True)
+    textSurface = myfont.render(text, True, color)
+    TextRect = textSurface.get_rect()
+    TextRect.center = [x, y]
+    map.blit(textSurface, TextRect)
 
 def loadAreas():
     # The previous adjacent area coorindates and sizes
@@ -117,9 +130,6 @@ def loadAreas():
     prev_x, prev_y, prev_w, prev_h = 0,0,0,0
     cur_exit = ''
     cur_color = [AREA_BASE_COLOR_R , AREA_BASE_COLOR_G, AREA_BASE_COLOR_B]
-
-    # dictionary to keep track of the areas already built
-
 
     # loop through the name list to load areas one by one
     for i in range (len(AREA_NAMES)):
@@ -184,23 +194,16 @@ def loadAreas():
                 cur_x = prev_x - cur_w
                 cur_y = prev_y + prev_h/2 - cur_h/2
 
-
         # remember the current area information to calculate the next one
         loaded_areas[cur_area_name] = [cur_x, cur_y, cur_w, cur_h]
 
         # load the area
         map.blit(surface, [cur_x, cur_y])
 
-        # blit the names
-        myfont = pygame.font.SysFont("arial", 12, True)
-        textSurface = myfont.render(AREA_FULL_NAMES[AREA_NAMES.index(cur_area_name)], True, WHITE)
-        TextRect = textSurface.get_rect()
-        TextRect.center = (cur_x+cur_w/2, cur_y + cur_h/2)
-        map.blit(textSurface, TextRect)
+        # blit the full area names
+        updateText (12, AREA_FULL_NAMES[AREA_NAMES.index(cur_area_name)], WHITE, cur_x+cur_w/2, cur_y + cur_h/2)
 
-
-
-    # blit markers for all exits
+    # blit  all exit markers as a white bar
     for key in loaded_areas.keys():
         lval = loaded_areas[key]
         _x = lval[0]
@@ -211,8 +214,7 @@ def loadAreas():
         ind = AREA_NAMES.index(key)
         cur_exit = AREA_EXITS[ind]
 
-
-
+        # drawing the white bar
         for i in range (len(cur_exit)):
             val = cur_exit[i]
             if val == 'N':
@@ -237,18 +239,6 @@ def loadAreas():
                 pygame.draw.line(map, WHITE, (_x + _w -3, _y + _h / 2 - EXIT_SIZE / 2),
                                  (_x + _w -3, _y + _h / 2 + EXIT_SIZE / 2), 2)
 
-
-
-# Player colors
-PLAYER_COLOR_R = 250
-PLAYER_COLOR_G = 120
-PLAYER_COLOR_B = 60
-# Player size
-PLAYER_WIDTH = 16
-PLAYER_HEIGHT = 12
-
-
-
 class Player:
     def __init__(self, x, y):
         self.rect = pygame.Rect(x, y, PLAYER_WIDTH, PLAYER_HEIGHT)
@@ -268,6 +258,7 @@ class Player:
         pygame.draw.rect(surface, self.color, self.rect)
 
     def update_default(self):
+        # velocity
         self.velX = 0
         self.velY = 0
 
@@ -295,8 +286,57 @@ class Player:
         if self.y > HEIGHT - PLAYER_HEIGHT:
             self.y = HEIGHT - PLAYER_HEIGHT
 
+        # update the full description of each area
+        cur_area = isInAnyRect(self.x, self.y)
+        if cur_area is None:
+            updateText(15, "Out of bound.", RED, WIDTH/2, HEIGHT*0.9)
+        else:
+            updateText(15, AREA_DESCRIPTIONS[AREA_NAMES.index(cur_area)], GRAY, WIDTH/2, HEIGHT*0.9)
+            # update the prizes if any
+            prizes = PRIZES_LIST[AREA_NAMES.index(cur_area)]
+            if len(prizes) > 0:
+                prize_names = prizes[0]
+                prize_quantity = prizes[1]
+                msg = "Claim one of "
+                for i in range (len(prize_names)):
+                    msg += str(prize_quantity[i]) + " " + prize_names[i] + " "
+                updateText(15, msg, PINK, WIDTH / 2, HEIGHT * 0.95)
+
         # draw a rectangle shaped player
         self.rect = pygame.Rect(self.x, self.y, PLAYER_WIDTH, PLAYER_HEIGHT)
+
+    # update according to the surface coordinates: sx, sy, and size: sw,sh
+    def update(self, sx, sy, sw, sh):
+       self.velX = 0
+       self.velY = 0
+
+       # figure out the movement
+       if self.left_pressed and not self.right_pressed:
+           self.velX = -self.speed
+       if self.right_pressed and not self.left_pressed:
+           self.velX = self.speed
+       if self.up_pressed and not self.down_pressed:
+           self.velY = -self.speed
+       if self.down_pressed and not self.up_pressed:
+           self.velY = self.speed
+
+       # adjust horizontally so the player square doesn't go out of boundary
+       self.x += self.velX
+       if self.x < sx and not isInAnyRect(self.x, self.y):
+           self.x = sx
+       if self.x > sx + sw - PLAYER_WIDTH and not isInAnyRect(self.x, self.y):
+           self.x = sx + sw - PLAYER_WIDTH
+
+       # adjust vertically so the player square doesn't go out of boundary
+       self.y += self.velY
+       if self.y < sy and not isInAnyRect(self.x, self.y):
+           self.y = sy
+       if self.y > sy + sh - PLAYER_HEIGHT and not isInAnyRect(self.x, self.y):
+           self.y = sy + sh - PLAYER_HEIGHT
+
+
+       # draw a rectangle shaped player
+       self.rect = pygame.Rect(self.x, self.y, PLAYER_WIDTH, PLAYER_HEIGHT)
 
 
 # player initialization:
@@ -351,57 +391,3 @@ while running:
 
     # run the while loop FREQUENCY times per second
     clock.tick(FREQUENCY)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
