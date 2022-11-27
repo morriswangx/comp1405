@@ -305,40 +305,6 @@ class Player:
         # draw a rectangle shaped player
         self.rect = pygame.Rect(self.x, self.y, PLAYER_WIDTH, PLAYER_HEIGHT)
 
-    # update according to the surface coordinates: sx, sy, and size: sw,sh
-    def update(self, sx, sy, sw, sh):
-       self.velX = 0
-       self.velY = 0
-
-       # figure out the movement
-       if self.left_pressed and not self.right_pressed:
-           self.velX = -self.speed
-       if self.right_pressed and not self.left_pressed:
-           self.velX = self.speed
-       if self.up_pressed and not self.down_pressed:
-           self.velY = -self.speed
-       if self.down_pressed and not self.up_pressed:
-           self.velY = self.speed
-
-       # adjust horizontally so the player square doesn't go out of boundary
-       self.x += self.velX
-       if self.x < sx and not isInAnyRect(self.x, self.y):
-           self.x = sx
-       if self.x > sx + sw - PLAYER_WIDTH and not isInAnyRect(self.x, self.y):
-           self.x = sx + sw - PLAYER_WIDTH
-
-       # adjust vertically so the player square doesn't go out of boundary
-       self.y += self.velY
-       if self.y < sy and not isInAnyRect(self.x, self.y):
-           self.y = sy
-       if self.y > sy + sh - PLAYER_HEIGHT and not isInAnyRect(self.x, self.y):
-           self.y = sy + sh - PLAYER_HEIGHT
-
-
-       # draw a rectangle shaped player
-       self.rect = pygame.Rect(self.x, self.y, PLAYER_WIDTH, PLAYER_HEIGHT)
-
-
 # player initialization:
 player = Player(AREA_START_X, AREA_START_Y + AREA_BASE_H / 2)
 running = True
