@@ -7,7 +7,7 @@ SCREEN_G = 224
 SCREEN_B = 236
 
 # refresh frequency
-FREQUENCY = 30
+FREQUENCY = 120
 
 # Window
 WIDTH, HEIGHT = 1250, 900
@@ -92,7 +92,7 @@ AREA_SIZES =    [[229, 112],    [180,174],              [202,113],      [217,246
                  [282,112],     [158,94],               [119,82],       [134,46],       [352,202],          [232,376]]
 
 PRIZES_LIST =    [[],         [],              [["Sandwiches"],[3]],    [],             [["Games"],[3]],  [["Books"],[3]],        [],
-                  [],         [],              [],                      [],             [],               [["Tennis Racket", "Pingpong Racket", "Golf Club", "Golf Ball"],[4,4,12,100]], [],
+                  [],         [],              [],                      [],             [],               [["Tennis Rackets", "Pingpong Rackets", "Golf Clubs", "Golf Balls"],[4,4,12,100]], [],
                   [],         [],              [],                      [],             [],               []]
 
 
@@ -162,10 +162,11 @@ def loadAreas():
 
         # load the surface rectangles
         if i == 0:
+            # start position
             cur_x = AREA_START_X
             cur_y = AREA_START_Y
         else:
-            # get the relative location of the current area
+            # get the relative position of the new area
             for j in range(len(cur_area_adjacent_list)):
                 if cur_area_adjacent_list[j] in loaded_areas.keys():
                     lval = loaded_areas[cur_area_adjacent_list[j]]
@@ -252,7 +253,7 @@ class Player:
         self.right_pressed = False
         self.up_pressed = False
         self.down_pressed = False
-        self.speed = 3
+        self.speed = 20
 
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, self.rect)
@@ -297,14 +298,50 @@ class Player:
             if len(prizes) > 0:
                 prize_names = prizes[0]
                 prize_quantity = prizes[1]
-                msg = "Claim one of "
+                msg = "Inventory: "
                 for i in range (len(prize_names)):
                     msg += str(prize_quantity[i]) + " " + prize_names[i] + " "
-                updateText(15, msg, PINK, WIDTH / 2, HEIGHT * 0.95)
+                updateText(15, msg, PINK, WIDTH / 2, HEIGHT * 0.93)
+
+                # build buttons to 1 - take 2 - inventory
+                takeButton = button(PINK, WIDTH/2, HEIGHT*0.95, 5, 3, "Take one")
+                takeButton.draw(map)
 
         # draw a rectangle shaped player
         self.rect = pygame.Rect(self.x, self.y, PLAYER_WIDTH, PLAYER_HEIGHT)
 
+
+class button():
+    def __init__(self, color, x, y, width, height, text='Button'):
+        self.color = color
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.text = text
+
+    def draw(self, win, outline=None):
+        # Call this method to draw the button on the screen
+        if outline:
+            pygame.draw.rect(win, outline, (self.x - 2, self.y - 2, self.width + 4, self.height + 4), 0)
+
+        pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height), 0)
+
+        if self.text != '':
+            font = pygame.font.SysFont('Arial', 60)
+            text = font.render(self.text, 1, (0, 0, 0))
+            win.blit(text, (
+            self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
+
+    def isOver(self, pos):
+        # Pos is the mouse position or a tuple of (x,y) coordinates
+        if pos[0] > self.x and pos[0] < self.x + self.width:
+            if pos[1] > self.y and pos[1] < self.y + self.height:
+                return True
+
+#
+# main section
+#
 # player initialization:
 player = Player(AREA_START_X, AREA_START_Y + AREA_BASE_H / 2)
 running = True
