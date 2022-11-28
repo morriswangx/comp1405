@@ -25,6 +25,8 @@ GREEN = [0,180,0]
 GRAY = [120,120,120]
 RED = [255,0,0]
 PINK = [120,0,0]
+LIGHT = [170, 170, 170]
+
 AREA_BASE_COLOR_R = 25
 AREA_BASE_COLOR_G = 25
 AREA_BASE_COLOR_B = 25
@@ -56,16 +58,17 @@ AREA_DESCRIPTIONS = ["FR: the family room is a private room for the whole family
                      "GM: the gym is where you burn calories and have fun while doing it. You don't need a lot of equipment to have a good workout,",
                      "MT: the movie theatre allows you to watch your favourite movies over and over. It's normally in the basement.",
                      "TC: the tennis court is next to the swimming pool and the lawn. It allows you to play singles or doubles.",
+                     "LN: the lawn is gorgeous with a tree in the middle. It's next to the golf course.",
                      "SR: the storage room is where useful tools or instruments are stored. Claim your prize here.",
                      "CB: the chicken barn has lots of chickens. But there is one rooster and it is noisy in the morning.",
                      "HB: the horse barn has horses. They are a graceful animal.",
                      "GD: the garden is where you can grow flowers or vegetables. They need constant care.",
                      "SP: the swimming pool has beautiful blue water. They are perfect for a hot summer day.",
                      "PP: the ping pong room is where you can play ping pong with family or friends. It could get intense.",
-                     "GC: the golf course is a full 21-hole-course. ",
-                     "LN: the lawn is gorgeous with a tree in the middle.",
-                     "CF: the corn field produces lots of sweet corn in the summer."
+                     "GC: the golf course is a full 21-hole-course. It's always packed with players in the summer.",
+                     "CF: the corn field produces lots of sweet corn in the summer. They are the best."
                      ]
+
 # Area name list
 AREA_FULL_NAMES =["Family Room","Dining Room",          "Kitchen",      "Garage",       "Game Room",        "Library",      "Computer Room",
                   "Recording Studio","Gym",             "Movie Threatre","Tennis Court","Lawn",             "Storage Room", "Chicken Barn",
@@ -94,7 +97,6 @@ AREA_SIZES =    [[229, 112],    [180,174],              [202,113],      [217,246
 PRIZES_LIST =    [[],         [],              [["Sandwiches"],[3]],    [],             [["Games"],[3]],  [["Books"],[3]],        [],
                   [],         [],              [],                      [],             [],               [["Tennis Rackets", "Pingpong Rackets", "Golf Clubs", "Golf Balls"],[4,4,12,100]], [],
                   [],         [],              [],                      [],             [],               []]
-
 
 # exit size
 EXIT_SIZE = 20
@@ -288,6 +290,7 @@ class Player:
             self.y = HEIGHT - PLAYER_HEIGHT
 
         # update the full description of each area
+        global cur_area
         cur_area = isInAnyRect(self.x, self.y)
         if cur_area is None:
             updateText(15, "Out of bound.", RED, WIDTH/2, HEIGHT*0.9)
@@ -303,41 +306,16 @@ class Player:
                     msg += str(prize_quantity[i]) + " " + prize_names[i] + " "
                 updateText(15, msg, PINK, WIDTH / 2, HEIGHT * 0.93)
 
-                # build buttons to 1 - take 2 - inventory
-                takeButton = button(PINK, WIDTH/2, HEIGHT*0.95, 5, 3, "Take one")
-                takeButton.draw(map)
+                # build buttons to take one item out of the inventory
+                smallfont = pygame.font.SysFont('Corbel', 25)
+                text = smallfont.render('Take one', True, PINK)
+                pygame.draw.rect(map, LIGHT, [WIDTH - 150, HEIGHT * 0.96, 100, 40])
+                # superimposing the text onto our button
+                map.blit(text, (WIDTH - 150, HEIGHT * 0.96))
 
         # draw a rectangle shaped player
         self.rect = pygame.Rect(self.x, self.y, PLAYER_WIDTH, PLAYER_HEIGHT)
 
-
-class button():
-    def __init__(self, color, x, y, width, height, text='Button'):
-        self.color = color
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.text = text
-
-    def draw(self, win, outline=None):
-        # Call this method to draw the button on the screen
-        if outline:
-            pygame.draw.rect(win, outline, (self.x - 2, self.y - 2, self.width + 4, self.height + 4), 0)
-
-        pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height), 0)
-
-        if self.text != '':
-            font = pygame.font.SysFont('Arial', 60)
-            text = font.render(self.text, 1, (0, 0, 0))
-            win.blit(text, (
-            self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
-
-    def isOver(self, pos):
-        # Pos is the mouse position or a tuple of (x,y) coordinates
-        if pos[0] > self.x and pos[0] < self.x + self.width:
-            if pos[1] > self.y and pos[1] < self.y + self.height:
-                return True
 
 #
 # main section
@@ -346,6 +324,11 @@ class button():
 player = Player(AREA_START_X, AREA_START_Y + AREA_BASE_H / 2)
 running = True
 while running:
+
+    # stores the (x,y) coordinates into
+    # the variable as a tuple
+    mouse = pygame.mouse.get_pos()
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -379,6 +362,24 @@ while running:
             # down arrow released
             if event.key == pygame.K_DOWN:
                 player.down_pressed = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # if the mouse is clicked on the Take one button
+            # one item is taken from the prize list
+            if WIDTH -150 <= mouse[0] <= WIDTH -50 and HEIGHT *0.96 <= mouse[1] <= HEIGHT *0.96 + 40:
+                prizes = PRIZES_LIST[AREA_NAMES.index(cur_area)]
+                if len(prizes) > 0:
+                    prize_names = prizes[0]
+                    prize_quantity = prizes[1]
+                    # take off one item from the inventory after each click
+                    for i in range(len(prize_quantity)):
+                        if prize_quantity[i] > 0:
+                            prize_quantity[i] -= 1
+                            break
+                    # update the inventory
+                    msg = "Inventory: "
+                    for i in range(len(prize_names)):
+                        msg += str(prize_quantity[i]) + " " + prize_names[i] + " "
+                    updateText(15, msg, PINK, WIDTH / 2, HEIGHT * 0.93)
 
     # set window color
     map.fill((SCREEN_R, SCREEN_G, SCREEN_B))
