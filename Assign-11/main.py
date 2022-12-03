@@ -1,60 +1,44 @@
-import random
+import pygame.font
+import sys
 
-def swap(list, i, j):
-    temp = list[i]
-    list[i] = list[j]
-    list[j] = temp
-    return list
+pygame.init()
+pygame.font.init()
 
-def isSorted(vals):
-    for i in range(0, len(vals) - 1):
-        if vals[i] > vals[i + 1]:
-            return False
-    return True
-
-# Check if an value is in the list
-def inList(vals, val):
-    for i in range(len(vals)):
-        if vals[i] == val:
-            return True
-    return False
-
-# get a list of unique numbers from 0 to the highest index
-# for example: [2,1,3,0]
-def getRand(vals):
-    listr = []
-    while len(listr) < len(vals):
-        num = random.randint(0, len(vals) - 1)
-        # print("generatee number:", num)
-        if inList(listr, num) is False:
-            listr.append(num)
-    return listr
-
-def bogosort(vals):
-
-    while isSorted(vals) is False:
-
-        listr = getRand(vals)
-        print("Generated unique numbers: ", listr)
-
-        # use the new random index list to get a new shuffled list
-        listtemp = []
-        for i in range(len(listr)):
-            listtemp.append(vals[listr[i]])
-
-        print("Attempted sort: ", listtemp)
-
-        # reassign the newly sorted list back to the original list before checking if it's sorted
-        vals = listtemp
-
-    print("Finally sorted: ", vals)
-
-def main():
-    lista = [9, 2, 8, 1,34,2,9,20]
-    bogosort(lista)
-
-main()
+# Window colors
+SCREEN_R = 212
+SCREEN_G = 224
+SCREEN_B = 236
 
 
+win = pygame.display.set_mode((1200, 900))
+# refresh frequency
+FREQUENCY = 120
+clock = pygame.time.Clock()
+# Step 1 - Load the font
+font = pygame.font.SysFont("Verdana", 30)
+
+# Step 2 - Render the font
+myText = font.render("Pygame font and text", True, [0,9,120])
 
 
+def updateText(size, text, color, x, y):
+    # blit the names
+    myfont = pygame.font.SysFont("arial", size, True)
+    textSurface = myfont.render(text, True, color)
+    TextRect = textSurface.get_rect()
+    TextRect.center = [x, y]
+    win.blit(textSurface, TextRect)
+
+Running = True
+while Running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    win.fill((SCREEN_R, SCREEN_G, SCREEN_B))
+    updateText(29, "text", [255,0,0], 500, 450)
+    # Step 3 - Draw the text
+    win.blit(myText, [100, 200])
+    pygame.display.update()
+    clock.tick(FREQUENCY)
