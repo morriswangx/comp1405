@@ -1,0 +1,137 @@
+[dmadmin@cedcs-pg-1 log]$ tail -f cedcs-pg-1_ECFS_REPO.log
+2022-12-03T21:14:41.721159      3041[3041]      0101e2408003db30        [AUTH]  Start-AuthenticateUserState:UserLoginName(dmadmin), UserExtraDomain()
+2022-12-03T21:14:41.721167      3041[3041]      0101e2408003db30        [AUTH]  Start-AuthenticateUserState:
+2022-12-03T21:14:41.721178      3041[3041]      0101e2408003db30        [AUTH]  dmStateForUser: auth_protocol()
+2022-12-03T21:14:41.721187      3041[3041]      0101e2408003db30        [AUTH]  End-AuthenticateUserState: 1
+2022-12-03T21:14:41.721219      3041[3041]      0101e2408003db30        [AUTH]  Start-AuthenticateByTrust:OSLogonName(dmadmin), UserLoginName(dmadmin), OSLogonDomain(), UserExtraDomain()
+2022-12-03T21:14:41.725758      3041[3041]      0101e2408003db30        [AUTH]  End-AuthenticateByTrust: 1
+2022-12-03T21:14:41.727533      3041[3041]      0101e2408003db30        [AUTH]  Create Session Log for user : dmadmin, FILE NAME : 0101e2408003db30
+2022-12-03T21:14:41.729897      3041[3041]      0101e2408003db30        [AUTH]  Done creating Session Log File for user : dmadmin
+2022-12-03T21:14:41.739706      3041[3041]      0101e2408003db30        [AUTH]  Final Auth Result=T, LOGON_NAME=dmadmin, AUTHENTICATION_LEVEL=9, OS_LOGON_NAME=dmadmin, OS_LOGON_DOMAIN=, CLIENT_HOST_NAME=cedcs-pg-1.cedcs-pg.ecmpoc-ecfs.svc.cluster.local, CLIENT_HOST_ADDR=10.51.10.45, USER_LOGON_NAME_RESOLVED=1, AUTHENTICATION_ONLY=0, USER_NAME=dmadmin, USER_OS_NAME=dmadmin, USER_LOGIN_NAME=dmadmin, USER_LOGIN_DOMAIN=, USER_EXTRA_CREDENTIAL[0]=, USER_EXTRA_CREDENTIAL[1]=, USER_EXTRA_CREDENTIAL[2]=e2, USER_EXTRA_CREDENTIAL[3]=, USER_EXTRA_CREDENTIAL[4]=, USER_EXTRA_CREDENTIAL[5]=, SERVER_SESSION_ID=0101e2408003db30, AUTH_BEGIN_TIME=Sat Dec  3 21:14:41 2022, AUTH_END_TIME=Sat Dec  3 21:14:41 2022, Total elapsed time=0 seconds
+2022-12-03T21:14:41.739734      3041[3041]      0101e2408003db30        [AUTH]  Exiting RPC AUTHENTICATE_USER
+2022-12-03T21:15:30.987446      3062[3062]      0101e2408003db05        [AUTH]  Entering RPC AUTHENTICATE_USER
+2022-12-03T21:15:30.987512      3062[3062]      0101e2408003db05        [AUTH]  Start Authentication : LOGON_NAME=dmadmin, DOMAIN_NAME=, OS_LOGON_NAME=daadmin, OS_LOGON_DOMAIN=, ASSUME_USER=0, TRUSTED_LOGIN_ALLOWED=0, PRINCIPAL_AUTH=0, DO_SET_LOCALE=0, RECONNECT=0, CLIENT_TOKEN=[106, 108, -34, 74, -88, 60, -114, 44, -24, -55, -105, 53, 20, -3, 87]
+2022-12-03T21:15:30.987524      3062[3062]      0101e2408003db05        [AUTH]  Start Authenticate Client Instance
+2022-12-03T21:15:30.987572      3062[3062]      0101e2408003db05        [AUTH]  Start Verify Signature, Client : dfc_2UNRl2KcKuMs7hBi0YqKbGbsAcAa , Host : da-55f584fd87-5lgfp
+2022-12-03T21:15:30.996576      3062[3062]      0101e2408003db05        [AUTH]  End Verify Signature, Client : dfc_2UNRl2KcKuMs7hBi0YqKbGbsAcAa , Host : da-55f584fd87-5lgfp
+2022-12-03T21:15:30.996632      3062[3062]      0101e2408003db05        [AUTH]  End Authenticate Client Instance
+2022-12-03T21:15:30.996689      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateUser: ClientHost(10-51-11-89.da-svc.ecmpoc-ecfs.svc.cluster.local), LogonName(dmadmin), LogonOSName(daadmin), LogonOSDomain(), UserExtraDomain(), ServerDomain()
+2022-12-03T21:15:30.996723      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateUserName:
+2022-12-03T21:15:30.996733      3062[3062]      0101e2408003db05        [AUTH]  dmResolveNamesForCredentials: auth_protocol()
+2022-12-03T21:15:30.996762      3062[3062]      0101e2408003db05        [AUTH]  End-AuthenticateUserName: dm_user.user_login_domain(), Result: 1
+2022-12-03T21:15:30.996796      3062[3062]      0101e2408003db05        [AUTH]  Found dm_user.user_login_name(dmadmin), dm_user.user_login_domain()
+2022-12-03T21:15:30.996808      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateDomain:LogonName(dmadmin), UserExtraDomain(), auth_protocol()
+2022-12-03T21:15:30.996822      3062[3062]      0101e2408003db05        [AUTH]  AuthenticateDomain - no domain required:domainOverride(False), user_login_domain(), serverAuthTarget(), userAuthTarget()
+2022-12-03T21:15:30.996843      3062[3062]      0101e2408003db05        [AUTH]  End-AuthenticateDomain: 1
+2022-12-03T21:15:30.996851      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateUserState:UserLoginName(dmadmin), UserExtraDomain()
+2022-12-03T21:15:30.996861      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateUserState:
+2022-12-03T21:15:30.996871      3062[3062]      0101e2408003db05        [AUTH]  dmStateForUser: auth_protocol()
+2022-12-03T21:15:30.996908      3062[3062]      0101e2408003db05        [AUTH]  End-AuthenticateUserState: 1
+2022-12-03T21:15:30.996948      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateByTrust:OSLogonName(daadmin), UserLoginName(dmadmin), OSLogonDomain(), UserExtraDomain()
+2022-12-03T21:15:30.996965      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateByPassword:UserLoginName(dmadmin), UserExtraDomain()
+2022-12-03T21:15:31.508658      3062[3062]      0101e2408003db05        [AUTH]  End-AuthenticateByPassword: 1
+2022-12-03T21:15:31.508795      3062[3062]      0101e2408003db05        [AUTH]  Create Session Log for user : dmadmin, FILE NAME : 0101e2408003db05
+2022-12-03T21:15:31.511149      3062[3062]      0101e2408003db05        [AUTH]  Done creating Session Log File for user : dmadmin
+2022-12-03T21:15:31.522128      3062[3062]      0101e2408003db05        [AUTH]  Final Auth Result=T, LOGON_NAME=dmadmin, AUTHENTICATION_LEVEL=8, OS_LOGON_NAME=daadmin, OS_LOGON_DOMAIN=, CLIENT_HOST_NAME=10-51-11-89.da-svc.ecmpoc-ecfs.svc.cluster.local, CLIENT_HOST_ADDR=10.51.11.89, USER_LOGON_NAME_RESOLVED=1, AUTHENTICATION_ONLY=0, USER_NAME=dmadmin, USER_OS_NAME=dmadmin, USER_LOGIN_NAME=dmadmin, USER_LOGIN_DOMAIN=, USER_EXTRA_CREDENTIAL[0]=, USER_EXTRA_CREDENTIAL[1]=, USER_EXTRA_CREDENTIAL[2]=f0, USER_EXTRA_CREDENTIAL[3]=, USER_EXTRA_CREDENTIAL[4]=, USER_EXTRA_CREDENTIAL[5]=, SERVER_SESSION_ID=0101e2408003db05, AUTH_BEGIN_TIME=Sat Dec  3 21:15:30 2022, AUTH_END_TIME=Sat Dec  3 21:15:31 2022, Total elapsed time=1 seconds
+2022-12-03T21:15:31.522160      3062[3062]      0101e2408003db05        [AUTH]  Exiting RPC AUTHENTICATE_USER
+2022-12-03T21:15:31.566005      3070[3070]      0101e2408002ad0b        [AUTH]  Entering RPC AUTHENTICATE_USER
+2022-12-03T21:15:31.566064      3070[3070]      0101e2408002ad0b        [AUTH]  Start Authentication : LOGON_NAME=dm_bof_registry, DOMAIN_NAME=, OS_LOGON_NAME=daadmin, OS_LOGON_DOMAIN=, ASSUME_USER=0, TRUSTED_LOGIN_ALLOWED=0, PRINCIPAL_AUTH=0, DO_SET_LOCALE=0, RECONNECT=0, CLIENT_TOKEN=[106, 108, -34, 74, -88, 60, -114, 44, -24, -55, -105, 53, 20, -3, 87]
+2022-12-03T21:15:31.566072      3070[3070]      0101e2408002ad0b        [AUTH]  Start Authenticate Client Instance
+2022-12-03T21:15:31.566104      3070[3070]      0101e2408002ad0b        [AUTH]  Client stance dfc_2UNRl2KcKuMs7hBi0YqKbGbsAcAa is found in cache
+2022-12-03T21:15:31.566114      3070[3070]      0101e2408002ad0b        [AUTH]  End Authenticate Client Instance
+2022-12-03T21:15:31.566196      3070[3070]      0101e2408002ad0b        [AUTH]  Start-AuthenticateUser: ClientHost(10-51-11-89.da-svc.ecmpoc-ecfs.svc.cluster.local), LogonName(dm_bof_registry), LogonOSName(daadmin), LogonOSDomain(), UserExtraDomain(), ServerDomain()
+2022-12-03T21:15:31.566219      3070[3070]      0101e2408002ad0b        [AUTH]  Start-AuthenticateUserName:
+2022-12-03T21:15:31.566229      3070[3070]      0101e2408002ad0b        [AUTH]  dmResolveNamesForCredentials: auth_protocol()
+2022-12-03T21:15:31.566289      3070[3070]      0101e2408002ad0b        [AUTH]  End-AuthenticateUserName: dm_user.user_login_domain(), Result: 1
+2022-12-03T21:15:31.566304      3070[3070]      0101e2408002ad0b        [AUTH]  Found dm_user.user_login_name(dm_bof_registry), dm_user.user_login_domain()
+2022-12-03T21:15:31.566322      3070[3070]      0101e2408002ad0b        [AUTH]  Start-AuthenticateDomain:LogonName(dm_bof_registry), UserExtraDomain(), auth_protocol()
+2022-12-03T21:15:31.566340      3070[3070]      0101e2408002ad0b        [AUTH]  AuthenticateDomain - no domain required:domainOverride(False), user_login_domain(), serverAuthTarget(), userAuthTarget()
+2022-12-03T21:15:31.566357      3070[3070]      0101e2408002ad0b        [AUTH]  End-AuthenticateDomain: 1
+2022-12-03T21:15:31.566373      3070[3070]      0101e2408002ad0b        [AUTH]  Start-AuthenticateUserState:UserLoginName(dm_bof_registry), UserExtraDomain()
+2022-12-03T21:15:31.566381      3070[3070]      0101e2408002ad0b        [AUTH]  Start-AuthenticateUserState:
+2022-12-03T21:15:31.566390      3070[3070]      0101e2408002ad0b        [AUTH]  dmStateForUser: auth_protocol()
+2022-12-03T21:15:31.566411      3070[3070]      0101e2408002ad0b        [AUTH]  End-AuthenticateUserState: 1
+2022-12-03T21:15:31.566446      3070[3070]      0101e2408002ad0b        [AUTH]  Start-AuthenticateByTrust:OSLogonName(daadmin), UserLoginName(dm_bof_registry), OSLogonDomain(), UserExtraDomain()
+2022-12-03T21:15:31.566461      3070[3070]      0101e2408002ad0b        [AUTH]  Start-AuthenticateByPassword:UserLoginName(dm_bof_registry), UserExtraDomain()
+2022-12-03T21:15:31.566484      3070[3070]      0101e2408002ad0b        [AUTH]  Start-authenticateByInlinePassword: UserLogonName(dm_bof_registry)
+2022-12-03T21:15:31.569115      3070[3070]      0101e2408002ad0b        [AUTH]  End-authenticateByInlinePassword: 1
+2022-12-03T21:15:31.569156      3070[3070]      0101e2408002ad0b        [AUTH]  End-AuthenticateByPassword: 1
+2022-12-03T21:15:31.569207      3070[3070]      0101e2408002ad0b        [AUTH]  Create Session Log for user : dm_bof_registry, FILE NAME : 0101e2408002ad0b
+2022-12-03T21:15:31.570377      3070[3070]      0101e2408002ad0b        [AUTH]  Done creating Session Log File for user : dm_bof_registry
+2022-12-03T21:15:31.581807      3070[3070]      0101e2408002ad0b        [AUTH]  Final Auth Result=T, LOGON_NAME=dm_bof_registry, AUTHENTICATION_LEVEL=8, OS_LOGON_NAME=daadmin, OS_LOGON_DOMAIN=, CLIENT_HOST_NAME=10-51-11-89.da-svc.ecmpoc-ecfs.svc.cluster.local, CLIENT_HOST_ADDR=10.51.11.89, USER_LOGON_NAME_RESOLVED=1, AUTHENTICATION_ONLY=0, USER_NAME=dm_bof_registry, USER_OS_NAME=dm_bof_registry, USER_LOGIN_NAME=dm_bof_registry, USER_LOGIN_DOMAIN=, USER_EXTRA_CREDENTIAL[0]=, USER_EXTRA_CREDENTIAL[1]=, USER_EXTRA_CREDENTIAL[2]=f0, USER_EXTRA_CREDENTIAL[3]=, USER_EXTRA_CREDENTIAL[4]=, USER_EXTRA_CREDENTIAL[5]=, SERVER_SESSION_ID=0101e2408002ad0b, AUTH_BEGIN_TIME=Sat Dec  3 21:15:31 2022, AUTH_END_TIME=Sat Dec  3 21:15:31 2022, Total elapsed time=0 seconds
+2022-12-03T21:15:31.581834      3070[3070]      0101e2408002ad0b        [AUTH]  Exiting RPC AUTHENTICATE_USER
+2022-12-03T21:15:31.641398      3072[3072]      0101e2408003db31        [AUTH]  Entering RPC AUTHENTICATE_USER
+2022-12-03T21:15:31.641463      3072[3072]      0101e2408003db31        [AUTH]  Start Authentication : LOGON_NAME=dmadmin, DOMAIN_NAME=, OS_LOGON_NAME=daadmin, OS_LOGON_DOMAIN=, ASSUME_USER=0, TRUSTED_LOGIN_ALLOWED=0, PRINCIPAL_AUTH=0, DO_SET_LOCALE=0, RECONNECT=0, CLIENT_TOKEN=[106, 108, -34, 74, -88, 60, -114, 44, -24, -55, -105, 53, 20, -3, 87]
+2022-12-03T21:15:31.641474      3072[3072]      0101e2408003db31        [AUTH]  Start Authenticate Client Instance
+2022-12-03T21:15:31.641515      3072[3072]      0101e2408003db31        [AUTH]  Client stance dfc_2UNRl2KcKuMs7hBi0YqKbGbsAcAa is found in cache
+2022-12-03T21:15:31.641531      3072[3072]      0101e2408003db31        [AUTH]  End Authenticate Client Instance
+2022-12-03T21:15:31.641636      3072[3072]      0101e2408003db31        [AUTH]  Start-AuthenticateUser: ClientHost(10-51-11-89.da-svc.ecmpoc-ecfs.svc.cluster.local), LogonName(dmadmin), LogonOSName(daadmin), LogonOSDomain(), UserExtraDomain(), ServerDomain()
+2022-12-03T21:15:31.641655      3072[3072]      0101e2408003db31        [AUTH]  Start-AuthenticateUserName:
+2022-12-03T21:15:31.641666      3072[3072]      0101e2408003db31        [AUTH]  dmResolveNamesForCredentials: auth_protocol()
+2022-12-03T21:15:31.641694      3072[3072]      0101e2408003db31        [AUTH]  End-AuthenticateUserName: dm_user.user_login_domain(), Result: 1
+2022-12-03T21:15:31.641723      3072[3072]      0101e2408003db31        [AUTH]  Found dm_user.user_login_name(dmadmin), dm_user.user_login_domain()
+2022-12-03T21:15:31.641736      3072[3072]      0101e2408003db31        [AUTH]  Start-AuthenticateDomain:LogonName(dmadmin), UserExtraDomain(), auth_protocol()
+2022-12-03T21:15:31.641752      3072[3072]      0101e2408003db31        [AUTH]  AuthenticateDomain - no domain required:domainOverride(False), user_login_domain(), serverAuthTarget(), userAuthTarget()
+2022-12-03T21:15:31.641762      3072[3072]      0101e2408003db31        [AUTH]  End-AuthenticateDomain: 1
+2022-12-03T21:15:31.641771      3072[3072]      0101e2408003db31        [AUTH]  Start-AuthenticateUserState:UserLoginName(dmadmin), UserExtraDomain()
+2022-12-03T21:15:31.641780      3072[3072]      0101e2408003db31        [AUTH]  Start-AuthenticateUserState:
+2022-12-03T21:15:31.641790      3072[3072]      0101e2408003db31        [AUTH]  dmStateForUser: auth_protocol()
+2022-12-03T21:15:31.641804      3072[3072]      0101e2408003db31        [AUTH]  End-AuthenticateUserState: 1
+2022-12-03T21:15:31.641852      3072[3072]      0101e2408003db31        [AUTH]  Start-AuthenticateByTrust:OSLogonName(daadmin), UserLoginName(dmadmin), OSLogonDomain(), UserExtraDomain()
+2022-12-03T21:15:31.641866      3072[3072]      0101e2408003db31        [AUTH]  Start-AuthenticateByPassword:UserLoginName(dmadmin), UserExtraDomain()
+2022-12-03T21:15:32.158603      3072[3072]      0101e2408003db31        [AUTH]  End-AuthenticateByPassword: 1
+2022-12-03T21:15:32.161555      3072[3072]      0101e2408003db31        [AUTH]  Create Session Log for user : dmadmin, FILE NAME : 0101e2408003db31
+2022-12-03T21:15:32.162849      3072[3072]      0101e2408003db31        [AUTH]  Done creating Session Log File for user : dmadmin
+2022-12-03T21:15:32.174215      3072[3072]      0101e2408003db31        [AUTH]  Final Auth Result=T, LOGON_NAME=dmadmin, AUTHENTICATION_LEVEL=8, OS_LOGON_NAME=daadmin, OS_LOGON_DOMAIN=, CLIENT_HOST_NAME=10-51-11-89.da-svc.ecmpoc-ecfs.svc.cluster.local, CLIENT_HOST_ADDR=10.51.11.89, USER_LOGON_NAME_RESOLVED=1, AUTHENTICATION_ONLY=0, USER_NAME=dmadmin, USER_OS_NAME=dmadmin, USER_LOGIN_NAME=dmadmin, USER_LOGIN_DOMAIN=, USER_EXTRA_CREDENTIAL[0]=, USER_EXTRA_CREDENTIAL[1]=, USER_EXTRA_CREDENTIAL[2]=f0, USER_EXTRA_CREDENTIAL[3]=, USER_EXTRA_CREDENTIAL[4]=, USER_EXTRA_CREDENTIAL[5]=, SERVER_SESSION_ID=0101e2408003db31, AUTH_BEGIN_TIME=Sat Dec  3 21:15:31 2022, AUTH_END_TIME=Sat Dec  3 21:15:32 2022, Total elapsed time=1 seconds
+2022-12-03T21:15:32.174250      3072[3072]      0101e2408003db31        [AUTH]  Exiting RPC AUTHENTICATE_USER
+2022-12-03T21:15:51.237478      3062[3062]      0101e2408003db05        [AUTH]  Entering RPC AUTHENTICATE_USER
+2022-12-03T21:15:51.237549      3062[3062]      0101e2408003db05        [AUTH]  Start Authentication : LOGON_NAME=MWang.consultant@isd.lacounty.gov, DOMAIN_NAME=, OS_LOGON_NAME=daadmin, OS_LOGON_DOMAIN=, ASSUME_USER=1, TRUSTED_LOGIN_ALLOWED=0, PRINCIPAL_AUTH=0, DO_SET_LOCALE=0, RECONNECT=0, CLIENT_TOKEN=[106, 108, -34, 74, -88, 60, -114, 44, -24, -55, -105, 53, 20, -3, 87]
+2022-12-03T21:15:51.237560      3062[3062]      0101e2408003db05        [AUTH]  Start Authenticate Client Instance
+2022-12-03T21:15:51.237586      3062[3062]      0101e2408003db05        [AUTH]  Client stance dfc_2UNRl2KcKuMs7hBi0YqKbGbsAcAa is found in cache
+2022-12-03T21:15:51.237601      3062[3062]      0101e2408003db05        [AUTH]  End Authenticate Client Instance
+2022-12-03T21:15:51.237654      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateUser: ClientHost(10-51-11-89.da-svc.ecmpoc-ecfs.svc.cluster.local), LogonName(MWang.consultant@isd.lacounty.gov), LogonOSName(daadmin), LogonOSDomain(), UserExtraDomain(), ServerDomain()
+2022-12-03T21:15:51.237676      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateUserName:
+2022-12-03T21:15:51.237688      3062[3062]      0101e2408003db05        [AUTH]  dmResolveNamesForCredentials: auth_protocol()
+2022-12-03T21:15:51.237726      3062[3062]      0101e2408003db05        [AUTH]  End-AuthenticateUserName: dm_user.user_login_domain(), Result: 1
+2022-12-03T21:15:51.237743      3062[3062]      0101e2408003db05        [AUTH]  Found dm_user.user_login_name(MWang.consultant@isd.lacounty.gov), dm_user.user_login_domain()
+2022-12-03T21:15:51.237751      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateDomain:LogonName(MWang.consultant@isd.lacounty.gov), UserExtraDomain(), auth_protocol()
+2022-12-03T21:15:51.237805      3062[3062]      0101e2408003db05        [AUTH]  AuthenticateDomain - no domain required:domainOverride(False), user_login_domain(), serverAuthTarget(), userAuthTarget()
+2022-12-03T21:15:51.237815      3062[3062]      0101e2408003db05        [AUTH]  End-AuthenticateDomain: 1
+2022-12-03T21:15:51.237824      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateUserState:UserLoginName(MWang.consultant@isd.lacounty.gov), UserExtraDomain()
+2022-12-03T21:15:51.237831      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateUserState:
+2022-12-03T21:15:51.237840      3062[3062]      0101e2408003db05        [AUTH]  dmStateForUser: auth_protocol()
+2022-12-03T21:15:51.237862      3062[3062]      0101e2408003db05        [AUTH]  End-AuthenticateUserState: 1
+2022-12-03T21:15:51.237901      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateByTrust:OSLogonName(daadmin), UserLoginName(MWang.consultant@isd.lacounty.gov), OSLogonDomain(), UserExtraDomain()
+2022-12-03T21:15:51.237923      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateByPassword:UserLoginName(MWang.consultant@isd.lacounty.gov), UserExtraDomain()
+2022-12-03T21:15:51.237941      3062[3062]      0101e2408003db05        [AUTH]  Start-AuthenticateUserByOTDSPassword:UserLoginName(MWang.consultant@isd.lacounty.gov)
+2022-12-03T21:15:51.238022      3062[3062]      0101e2408003db05        checkMethodsOption: JMS -  object id = 0801e2408000a6bd
+2022-12-03T21:15:51.238053      3062[3062]      0101e2408003db05        checkMethodsOption: JMS -  appServerName = OTDSAuthentication
+2022-12-03T21:15:51.238075      3062[3062]      0101e2408003db05        checkMethodsOption: JMS -  m_appServerURI = http://ecmpoc-ecfs.ekspoc.lacounty.gov/OTDSAuthentication/servlet/authenticate
+2022-12-03T21:15:51.240064      3062[3062]      0101e2408003db05        doJMSHAPOST 1: JMS -  appServerName = OTDSAuthentication
+2022-12-03T21:15:51.256202      3062[3062]      0101e2408003db05        HTTP_POST TRACE: digital signature: YI0OgTBBh06PdE6V2uon6Ot/3C4YLk22uygtpeWT6VM0FuDkVkuUPfdw460jEVNmU67niv52HYwzSxzGIwH5oyszIXxol5IUVgBOi4qFxz4SUVjpXbxHFJoefVierAfQ89KtyG61PV+Q2IUAcI+4szit8M2ojOPG/BoYmE/DpEY=, strlen(signature): 172
+2022-12-03T21:15:51.284926      3062[3062]      0101e2408003db05        HTTP_POST TRACE: Received content from socket : Received length=505
+2022-12-03T21:15:51.284976      3062[3062]      0101e2408003db05        HTTP_POST TRACE: content received {
+HTTP/1.1 200
+Date: Sat, 03 Dec 2022 21:15:51 GMT
+Content-Length: 0
+Connection: close
+Set-Cookie: AWSALB=E10DwSlChQuRMEcfyMcpg2jV7vMZJ/WAfn5P1PVhOf/r/50DoNNWavg9dQoK7uGpgLk9gwXm1JNIpBYxuLRgfNvQMCxXspggj5nwhIY5vRrvcqk9pv/l8QL4aO6z; Expires=Sat, 10 Dec 2022 21:15:51 GMT; Path=/
+Set-Cookie: AWSALBCORS=E10DwSlChQuRMEcfyMcpg2jV7vMZJ/WAfn5P1PVhOf/r/50DoNNWavg9dQoK7uGpgLk9gwXm1JNIpBYxuLRgfNvQMCxXspggj5nwhIY5vRrvcqk9pv/l8QL4aO6z; Expires=Sat, 10 Dec 2022 21:15:51 GMT; Path=/; SameSite=None
+Server:
+
+
+}
+2022-12-03T21:15:51.284988      3062[3062]      0101e2408003db05        [AUTH]  HTTP/1.1 200
+Date: Sat, 03 Dec 2022 21:15:51 GMT
+Content-Length: 0
+Connection: close
+Set-Cookie: AWSALB=E10DwSlChQuRMEcfyMcpg2jV7vMZJ/WAfn5P1PVhOf/r/50DoNNWavg9dQoK7uGpgLk9gwXm1JNIpBYxuLRgfNvQMCxXspggj5nwhIY5vRrvcqk9pv/l8QL4aO6z; Expires=Sat, 10 Dec 2022 21:15:51 GMT; Path=/
+Set-Cookie: AWSALBCORS=E10DwSlChQuRMEcfyMcpg2jV7vMZJ/WAfn5P1PVhOf/r/50DoNNWavg9dQoK7uGpgLk9gwXm1JNIpBYxuLRgfNvQMCxXspggj5nwhIY5vRrvcqk9pv/l8QL4aO6z; Expires=Sat, 10 Dec 2022 21:15:51 GMT; Path=/; SameSite=None
+Server:
+
+
+2022-12-03T21:15:51.285002      3062[3062]      0101e2408003db05        [AUTH]  End-AuthenticateUserByOTDSPassword: 0
+2022-12-03T21:15:51.285022      3062[3062]      0101e2408003db05        [AUTH]  End-AuthenticateByPassword: 0
+2022-12-03T21:15:51.321990      3062[3062]      0101e2408003db05        [AUTH]  Final Auth Result=F, LOGON_NAME=MWang.consultant@isd.lacounty.gov, AUTHENTICATION_LEVEL=1, OS_LOGON_NAME=daadmin, OS_LOGON_DOMAIN=, CLIENT_HOST_NAME=10-51-11-89.da-svc.ecmpoc-ecfs.svc.cluster.local, CLIENT_HOST_ADDR=10.51.11.89, USER_LOGON_NAME_RESOLVED=1, AUTHENTICATION_ONLY=0, USER_NAME=Morris Wang (c241768), USER_OS_NAME=MWang.consultant@isd.lacounty.gov, USER_LOGIN_NAME=MWang.consultant@isd.lacounty.gov, USER_LOGIN_DOMAIN=, USER_EXTRA_CREDENTIAL[0]=, USER_EXTRA_CREDENTIAL[1]=, USER_EXTRA_CREDENTIAL[2]=f0, USER_EXTRA_CREDENTIAL[3]=, USER_EXTRA_CREDENTIAL[4]=, USER_EXTRA_CREDENTIAL[5]=, SERVER_SESSION_ID=0101e2408003db05, AUTH_BEGIN_TIME=Sat Dec  3 21:15:51 2022, AUTH_END_TIME=Sat Dec  3 21:15:51 2022, Total elapsed time=0 seconds
+2022-12-03T21:15:51.322047      3062[3062]      0101e2408003db05        [AUTH]  Exiting RPC AUTHENTICATE_USER
+
